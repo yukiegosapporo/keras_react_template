@@ -9,9 +9,6 @@ pp = pprint.PrettyPrinter()
 app = Flask(__name__, static_folder='../static/dist', template_folder='../static')
 CORS(app)
 
-app_id = '286c721b'
-app_key = 'b201080031cba3b679e6a1eb130fd80c'
-
 @app.route('/')
 def index():
     return render_template('index.html')
