@@ -2,7 +2,7 @@
 
 
 ```
-cd static
+cd keras_react_template/static
 npm i
 npm run watch
 cd ../server
