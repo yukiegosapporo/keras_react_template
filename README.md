@@ -8,7 +8,9 @@ npm i
 npm run watch
 ```
 
-Backend configuration
+Backend configuration  
+Change keras backend to theano ($HOME/.keras/keras.json) then;  
+
 ```
 cd keras_react_template/server
 python3 server.py

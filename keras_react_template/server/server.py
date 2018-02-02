@@ -15,33 +15,12 @@ def index():
 
 @app.route("/recipes", methods=['POST'])
 def recipes():
-    # try:
-    imagefile = request.files['file']
-    objects = image2obj(imagefile, topx=1)
-    return jsonify(objects)
-    # recipes = get_recipes(objects, app_id, app_key)
-    # return jsonify(recipes)
-    # return render_template("result.html",result = recipes)
-    # except:
-    #     return 'error processing image'
-
-def get_recipes(objects, app_id, app_key):
-    res = []
-    ep = 'http://www.recipepuppy.com/api/'
-    for o in objects:
-        r = requests.get(ep + '?q=' + o + '&app_id=' + app_id + '&app_key=' + app_key)
-        if r.status_code == 200:
-            res.extend([
-                {'label': i['recipe']['label'],
-                'uri': i['recipe']['uri']} for i in r.json()['hits']])
-    return res
-
-@app.after_request
-def after_request(response):
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  return response
+    try:
+        imagefile = request.files['file']
+        objects = image2obj(imagefile, topx=1)
+        return jsonify(objects)
+    except ValueError:
+        raise 
 
 if __name__ == "__main__":
     app.run(debug=True)
